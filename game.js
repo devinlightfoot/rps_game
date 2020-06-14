@@ -1,5 +1,8 @@
 var computerSelection;
 var playerSelection;
+let huscore = 0;
+let compscore = 0;
+var count;
 function computerPlay() {
     function getRndInteger(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
@@ -12,76 +15,58 @@ function computerPlay() {
         computerSelection = "paper";
     }
     else {
-        computerSelection = "scissors"
+        computerSelection = "scissors";
     }
-    console.log(computerSelection);
+}
+function playRound(player, computer) {
+    player = playerSelection;
+    computer = computerSelection;
+    if (playerSelection === computerSelection) {
+        count--;
+        return "You both chose the same thing, go again!";
+    }
+    else if ((playerSelection === "rock") && (computerSelection === "paper")) {
+        compscore++;
+        return "You lose this round, paper beats rock";
+    }
+    else if ((playerSelection === "rock") && (computerSelection === "scissors")) {
+        huscore++;
+        return "You won this round! Rock beats paper";
+    }
+    else if ((playerSelection === "paper") && (computerSelection === "rock")) {
+        huscore++;
+        return "You won this round! Paper bears rock";
+    }
+    else if ((playerSelection === "paper") && (computerSelection === "scissors")) {
+        compscore++;
+        return "You lose this round, scissors beat paper";
+    }
+    else if ((playerSelection === "scissors") && (computerSelection === "rock")) {
+        compscore++;
+        return "You lose this round, rock beats scissors";
+    }
+    else if ((playerSelection === "scissors") && (computerSelection === "paper")) {
+        huscore++;
+        return "You win this round! Scissors beat paper";
+    }
+    else {
+        alert("something went wrong");
+    }
 }
 function game() {
-    let huscore = 0;
-    let compscore = 0;
-    let count;
     for (count = 0; count < 5; count++) {
         playerSelection = prompt("Please make your selection", "rock");
         playerSelection = playerSelection.toLowerCase();
         computerPlay();
-        function round(player, computer) {
-            playerSelection = prompt("Please make your selection", "rock");
-        playerSelection = playerSelection.toLowerCase();
-            player = playerSelection;
-            computer= computerSelection;
-            if (playerSelection == computerSelection) {
-                count--;
-                console.log("count:" + count);
-                console.log("Your score:" + huscore);
-                console.log("Computer score:" + compscore);
-                return "You both chose the same thing, go again!"
-            }
-            if (playerSelection == "rock" && computerSelection == "paper")
-                compscore++;
-            console.log("count:" + count);
-            console.log("Your score:" + huscore);
-            console.log("Computer score:" + compscore);
-            return "You lose this round, paper beats rock";
-            if (playerSelection == "rock" && computerSelection == "scissors") {
-                huscore++;
-                console.log("count:" + count);
-                console.log("Your score:" + huscore);
-                console.log("Computer score:" + compscore);
-                return "You won this round! Rock beats paper";
-            }
-            if (playerSelection == "paper" && computerSelection == "rock") {
-                huscore++; console.log("count:" + count);
-                console.log("Your score:" + huscore);
-                console.log("Computer score:" + compscore);
-                return "You won this round! Paper bears rock"
-            }
-            if (playerSelection == "paper" && computerSelection == "scissors") {
-                compscore++;
-                console.log("count:" + count);
-                console.log("Your score:" + huscore);
-                console.log("Computer score:" + compscore);
-                return "You lose this round, scissors beat paper";
-            }
-            if (playerSelection == "scissors" && computerSelection == "rock") {
-                compscore++;
-                console.log("count:" + count);
-                console.log("Your score:" + huscore);
-                console.log("Computer score:" + compscore);
-                return "You lose this round, rock beats scissors";
-            }
-            if (playerSelection == "scissors" && computerSelection == "paper") {
-                huscore++;
-                console.log("count:" + count);
-                console.log("Your score:" + huscore);
-                console.log("Computer score:" + compscore);
-                return "You win this round! Scissors beat paper";
-            }
-        }
+        playRound(playerSelection, computerSelection);
     }
     if (huscore > compscore) {
-            return "Congratulations, you beat the machine!";
-        }
-        else {
-            return "The machine has bested you, better luck next time";
-        }
+        return "Congratulations, you beat the machine!";
+    }
+    else if (compscore > huscore) {
+        return "The machine has bested you, better luck next time";
+    }
+    else {
+        alert("something went wrong");
+    }
 }
