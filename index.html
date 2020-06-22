@@ -1,6 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <script src =game.js></script>
+    <link rel='stylesheet' href="style.css">
+    <title>A Simple Game of Rock, Paper, Scissors</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" description="Devin Lightfoot">
+
 </head>
+
+<body>
+    <div class="score">
+        <p>Player Score: <span id='hscore'></span>
+        </p>
+        <p>Computer Score: <span id='cscore'></span>
+        </p>
+    </div>
+    <div class="buttons">
+        <button data-key='rock' class='btn'>Rock</button>
+        <button data-key='paper' class='btn'>Paper</button>
+        <button data-key='scissors' class='btn'>Scissors</button>
+    </div>
+    <script src=game.js></script>
+</body>
+
 </html>
